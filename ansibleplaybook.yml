@@ -1,6 +1,7 @@
 - hosts: localhost
   tasks:
   - name: Install docker.
+    become: yes
     package:
       name: docker-ce
       state: present
@@ -8,11 +9,3 @@
     service:
       name: docker
       state: started
-  - name: Create a redis container
-    docker_container:
-      name: data1
-      image: centos
-      state: started
-      recreate: yes
-      exposed_ports:
-        - 8080
